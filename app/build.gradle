@@ -36,4 +36,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+//  implementing IBM Watson Speech to Text API
+    implementation 'com.ibm.watson:ibm-watson:8.6.0'
+    implementation 'com.arthenica:mobile-ffmpeg-full:4.4'
 }

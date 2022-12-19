@@ -11,7 +11,7 @@
         android:layout_width="370dp"
         android:layout_height="582dp"
         android:layout_marginTop="16dp"
-        android:text="Speech to Text Data Displayed"
+        android:hint="Speech to Text Data Displayed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"

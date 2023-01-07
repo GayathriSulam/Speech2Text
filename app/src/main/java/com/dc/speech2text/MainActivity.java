@@ -102,12 +102,6 @@ public class MainActivity extends AppCompatActivity {
         mediaRecorder.release();
         int rc = FFmpeg.execute(String.format("-i %s -c:a libmp3lame %s", recordedFileName, convertedFileName));
         if (rc == RETURN_CODE_SUCCESS) {
-            Log.i(Config.TAG, "Command execution completed successfully.");
-            try {
-                playRecording(convertedFileName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             IamAuthenticator authenticator = new IamAuthenticator("bZhaj-yZMK8U9tGjhJHb3YHdC@7_a6-Qw7v6ykwfAXJm");
             SpeechToText speechToText = new SpeechToText(authenticator);
             speechToText.setServiceUrl("https://api.us-south.speech-to-text.watson.cloud.ibm.com");
@@ -157,11 +151,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    private void playRecording(String fileName) throws IOException {
-        MediaPlayer player = new MediaPlayer();
-        player.setDataSource(fileName);
-        player.prepare();
-        player.start();
     }
 }

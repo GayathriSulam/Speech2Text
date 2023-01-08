@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             RecognizeOptions options = new RecognizeOptions.Builder()
                     .audio(audioFile)
                     .contentType(HttpMediaType.AUDIO_MP3)
-                    .model("en-AU_NarrowbandModel")
+                    .model("en-US_NarrowbandModel")
                     .build();
             final SpeechRecognitionResults transcript = speechToText.recognize(options).execute().getResult();
             System.out.println(transcript);

@@ -23,7 +23,6 @@ import com.ibm.watson.speech_to_text.v1.model.RecognizeOptions;
 import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults;
 import org.json.*;
 import java.io.*;
-import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
@@ -83,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void startAudioRecording() throws IOException {
         toggleRecording();
-        String uuid = UUID.randomUUID().toString();
-        recordedFileName = getFilesDir().getPath() + "/" + uuid + ".3gp";
-        convertedFileName = getFilesDir().getPath() + "/" + uuid + ".mp3";
+        recordedFileName = getFilesDir().getPath() + "/" + "audioFile" + ".3gp";
+        convertedFileName = getFilesDir().getPath() + "/" + "audioFile" + ".mp3";
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -101,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
         mediaRecorder.release();
         int rc = FFmpeg.execute(String.format("-i %s -c:a libmp3lame %s", recordedFileName, convertedFileName));
         if (rc == RETURN_CODE_SUCCESS) {
-            IamAuthenticator authenticator = new IamAuthenticator("bZhaj-yZMK8U9tGjhJHb3YHdC@7_a6-Qw7v6ykwfAXJm");
+            IamAuthenticator authenticator = new IamAuthenticator("0iu8FI_Ug-hKuyQvYoaGoapwnAdAM6kkMtfjEnfpYC6h");
             SpeechToText speechToText = new SpeechToText(authenticator);
-            speechToText.setServiceUrl("https://api.us-south.speech-to-text.watson.cloud.ibm.com");
+            speechToText.setServiceUrl("https://api.au-syd.speech-to-text.watson.cloud.ibm.com/instances/20d50a05-2ef7-4984-b86a-96df05079446");
             File audioFile = new File(convertedFileName);
             RecognizeOptions options = new RecognizeOptions.Builder()
                     .audio(audioFile)
@@ -143,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (isRecording){
-                    startRecordingButton.setText("Convert Speech");
+                    startRecordingButton.setText("Convert to Text");
                 }
                 else{
-                    startRecordingButton.setText("Start Speaking");
+                    startRecordingButton.setText("Start Speech");
                 }
             }
         });

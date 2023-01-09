@@ -23,6 +23,7 @@ import com.ibm.watson.speech_to_text.v1.model.RecognizeOptions;
 import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults;
 import org.json.*;
 import java.io.*;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
@@ -82,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void startAudioRecording() throws IOException {
         toggleRecording();
-        recordedFileName = getFilesDir().getPath() + "/" + "audioFile" + ".3gp";
-        convertedFileName = getFilesDir().getPath() + "/" + "audioFile" + ".mp3";
+        Random randomNum = new Random();
+        int randomNumber = randomNum. nextInt(1000000000);
+        recordedFileName = getFilesDir().getPath() + "/" + "audioFile"+ randomNumber + ".3gp";
+        convertedFileName = getFilesDir().getPath() + "/" + "audioFile"+ randomNumber + ".mp3";
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
